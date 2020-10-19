@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import RentForm from './components/forms/RentForm';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 className="app__title">Awesome Bike Rental</h1>
+      <h2 className="app__subtitle">
+        <img
+          className="app__subtitle-emoji"
+          alt="money-mouth"
+          src={require("./static/emoji/money-mouth.png")}
+        />&nbsp;Create new rent
+      </h2>
+      <RentForm />
     </div>
   );
 }

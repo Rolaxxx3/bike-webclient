@@ -1,0 +1,45 @@
+.rent-form {
+    width: 100%;
+    background-color: #e9eaee;
+    min-height: 140px;
+    padding: 24px 48px 48px;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.rent-form__name-field {
+    width: 280px;
+}
+
+.rent-form__type-field {
+    width: 280px;
+}
+
+.rent-form__price-field {
+    width: 140px;
+}
+
+.rent-form__submit-btn {
+    width: 140px;
+    min-height: 54px;
+    border-radius: 5px;
+    background-color: #24b899;
+    color: #ffffff;
+    outline: none;
+    border: 0px;
+    font-size: 18px;
+    line-height: 30px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+}
+
+.rent-form__submit-btn:hover {
+    background-color:#1f9c80;
+    transition: .3s;
+}

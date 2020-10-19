@@ -1,0 +1,19 @@
+.input-field__input {
+    width: 100%;
+    height: 54px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+}
+
+.input-field__label {
+    color: #515151;
+    font-size: 18px;
+    line-height: 36px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+}
