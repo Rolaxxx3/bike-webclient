@@ -7,28 +7,48 @@ import './RentForm.css';
 import BIKE_TYPES from '../../../constants/BIKE_TYPES'
 
 import api from '../../../helpers/ApiCaller'
-
+import mongoObjectId from '../../../helpers/mongoObjectId'
 
 class RentForm extends Component {
     state = {
         form: {
             name: '',
-            type: BIKE_TYPES[0],
+            type: "0",
             price: 0,
         }
     };
 
-    submit = (e) => {
+    submit = async (e) => {
         e.preventDefault();
         if (this.formValidator()) {
             return;
         } else {
+            const _id = mongoObjectId();
             const form = this.state.form;
             api.post('/bikes', {
                 name: form.name,
-                type: form.type,
+                type: parseInt(form.type),
                 rent: {
-                    price: form.price
+                    price: Number(form.price),
+                },
+                _id,
+            });
+            this.props.onSubmit(
+                {
+                    name: form.name,
+                    type: parseInt(form.type),
+                    rent: {
+                        price: Number(form.price),
+                    },
+                    _id,
+                },
+                this.props.bikesList.length
+            );
+            this.setState({
+                form: {
+                    name: '',
+                    type: "0",
+                    price: 0,
                 }
             });
         }
@@ -36,20 +56,22 @@ class RentForm extends Component {
 
     formValidator = () => {
         const form = this.state.form;
-        return (
+        return !(
             form.name.length > 0 &&
-            //form.name instanceof String &&
+            typeof form.name === 'string' &&
             form.type.length > 0 &&
-            //form.type instanceof String &&
-            form.price > 0 //&&
-            //form.price instanceof Number
+            typeof form.type === 'string' &&
+            form.price > 0 &&
+            typeof form.price === 'string'
         )
     }
 
     change = (fieldName) => (event) => {
-        const stateChanger = {};
-        stateChanger[`form.${fieldName}`] = event.target.value;
-        this.setState(stateChanger);
+        const newState = Object.assign({}, this.state);
+        newState.form[`${fieldName}`] = event.target.value;
+
+        this.setState(newState);
+
         return;
     }
 
@@ -63,17 +85,23 @@ class RentForm extends Component {
                     className="rent-form__name-field"
                     type="text"
                     label="Bike name"
-                    onChange={this.change('form.name')}
+                    onChange={this.change('name', true)}
+                    value={this.state.form.name}
                 />
                 <SelectField
                     className="rent-form__type-field"
                     options={BIKE_TYPES}
                     label="Bike type"
+                    onChange={this.change('type')}
+                    value={this.state.form.type}
                 />
                 <InputField
                     className="rent-form__price-field"
                     type="number"
                     label="Rent price"
+                    step="0.01"
+                    onChange={this.change('price', true)}
+                    value={this.state.form.price}
                 />
                 <button
                     className="rent-form__submit-btn"

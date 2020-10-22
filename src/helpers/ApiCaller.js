@@ -3,9 +3,9 @@ import config from '../config'
 
 class ApiCaller {
     constructor() {
-        this.api_url = config.API_URL;
+        this.api_url = config.API_URL + '/_api';
     }
-    async getWithoutSignature(route) {
+    async get(route) {
         try {
             return await axios.get(this.api_url + route);
         } catch (e) {

@@ -1,0 +1,72 @@
+.bike-item__item-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    margin-bottom: 24px;
+}
+
+.bike-item__text {
+    font-size: 24px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 500;
+    color: #515151;
+}
+
+.bike-item__buttons-wrapper {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bike-item__button-wrapper {
+    width: 140px;
+}
+
+.bike-item__date-pickr {
+    height: 54px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+}
+
+.bike-item__rent-btn {
+    width: 140px;
+    min-height: 54px;
+    border-radius: 5px;
+    background-color: #3650c5;
+    color: #ffffff;
+    outline: none;
+    border: 0px;
+    font-size: 18px;
+    line-height: 30px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+}
+
+.bike-item__cancel-btn {
+    width: 140px;
+    min-height: 54px;
+    border-radius: 5px;
+    background-color:#f1313f;
+    color: #ffffff;
+    outline: none;
+    border: 0px;
+    font-size: 18px;
+    line-height: 30px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;    
+}

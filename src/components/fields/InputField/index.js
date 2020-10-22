@@ -12,11 +12,13 @@ class InputField extends Component {
                         : null
                 }
                 <input
-                    min={this.props.min || 0}
-                    max={this.props.max || Number.MAX_SAFE_INTEGER}
+                    min={(this.props.type === 'number') ? (this.props.min || 0) : null}
+                    max={(this.props.type === 'number') ? (this.props.max || Number.MAX_SAFE_INTEGER) : null}
                     type={this.props.type || 'text'}
                     className="input-field__input"
+                    value={this.props.value}
                     onChange={this.props.onChange}
+                    step={this.props.step || null}
                 />
             </div>
         )
