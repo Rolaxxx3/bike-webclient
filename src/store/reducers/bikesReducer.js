@@ -11,7 +11,7 @@ function bikesReducer(state = [], action) {
                     rent: {
                         end_date: payload.rent.end_date || Date.now(),
                         start_date: payload.rent.start_date || Date.now(),
-                        price: payload.rent.price,
+                        price: payload.rent.price || 0,
                     },
                     name: payload.name,
                     type: payload.type,
@@ -29,6 +29,10 @@ function bikesReducer(state = [], action) {
                         rent: {
                             ...bike.rent,
                             end_date: bike.rent.start_date,
+                            price:
+                                (moment(payload.rent.end_date).diff(moment(payload.rent.start_date, 'hours')) > 20) ?
+                                bike.rent.price * 2 :
+                                bike.rent.price
                         }
                     }
                 }
@@ -46,6 +50,7 @@ function bikesReducer(state = [], action) {
                             ...bike.rent,
                             end_date: action.end_date,
                             start_date: moment().toISOString(),
+                            price: Number(payload.rent.price),
                         }
                     }
                 }

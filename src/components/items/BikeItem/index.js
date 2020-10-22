@@ -29,7 +29,13 @@ class BikeItem extends Component {
                     start_date: moment().toISOString(),
                 }
             });
-            this.props.rentBike(this.props.value, moment(this.state.date).toISOString());
+            if (moment(this.state.date).diff(moment(), 'hours') > 20) {
+                const bike = Object.assign(this.props.value, {});
+                bike.rent.price = (bike.rent.price / 2).toFixed(2);
+                this.props.rentBike(bike, moment(this.state.date).toISOString());
+            } else {
+                this.props.rentBike(this.props.value, moment(this.state.date).toISOString());
+            }
         } catch (e) {
             console.error(e.message);
         }

@@ -12,7 +12,7 @@ import { addBike } from './store/actionCreators/bikeCreator'
 import api from './helpers/ApiCaller'
 
 import BIKE_LIST_TYPES from './constants/BIKE_LIST_TYPES'
-
+import moment from 'moment'
 class App extends Component {
   state = {
     rentedBikes: [],
@@ -24,8 +24,13 @@ class App extends Component {
     try {
       const { data } = await api.get('/bikes');
       if (data instanceof Array) {
-        for (const bike of data)
-          this.props.addBike(bike);
+        for (const bike of data) {
+          const newBike = Object.assign(bike, {});
+          if (moment(newBike.rent.end_date).diff(newBike.rent.start_date, "hours") > 20) {
+            newBike.rent.price = Number((newBike.rent.price / 2).toFixed(2))
+          }
+          this.props.addBike(newBike);
+        }
       }
     } catch (e) {
       console.error(e.message);
